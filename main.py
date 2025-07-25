@@ -34,3 +34,6 @@ center = (width // 2, height // 2)
 rotation_matrix = cv2.getRotationMatrix2D(center, 45, 1.0)
 rotated = cv2.warpAffine(image, rotation_matrix, (width, height))
 show_image(cv2.cvtColor(rotated, cv2.COLOR_BGR2RGB))
+
+# 6. Save the modified image
+cv2.imwrite('grayscale_image.png', gray)
