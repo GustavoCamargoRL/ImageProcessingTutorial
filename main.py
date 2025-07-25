@@ -12,3 +12,7 @@ def show_image(img, cmap=None):
 image = cv2.imread('exemplo.png')  # Replace with a valid image path
 image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 show_image(image_rgb)
+
+# 3. Convert to grayscale
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+show_image(gray, cmap='gray')
