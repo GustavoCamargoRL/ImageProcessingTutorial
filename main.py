@@ -19,7 +19,18 @@ gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # 4. Resize and crop the image
 resized = cv2.resize(image, (200, 200))
-show_image(cv2.cvtColor(resized, cv2.COLOR_BGR2RGB))
+#show_image(cv2.cvtColor(resized, cv2.COLOR_BGR2RGB))
 
 cropped = image[50:200, 100:300]
-show_image(cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB))
+#show_image(cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB))
+
+# 5. Flip and rotate the image
+flipped = cv2.flip(image, 1)  # Horizontal flip
+show_image(cv2.cvtColor(flipped, cv2.COLOR_BGR2RGB))
+
+# Rotate 45 degrees around the center
+height, width = image.shape[:2]
+center = (width // 2, height // 2)
+rotation_matrix = cv2.getRotationMatrix2D(center, 45, 1.0)
+rotated = cv2.warpAffine(image, rotation_matrix, (width, height))
+show_image(cv2.cvtColor(rotated, cv2.COLOR_BGR2RGB))
