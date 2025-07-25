@@ -11,8 +11,15 @@ def show_image(img, cmap=None):
 # 2. Load an image from file
 image = cv2.imread('exemplo.png')  # Replace with a valid image path
 image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-show_image(image_rgb)
+#show_image(image_rgb)
 
 # 3. Convert to grayscale
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-show_image(gray, cmap='gray')
+#show_image(gray, cmap='gray')
+
+# 4. Resize and crop the image
+resized = cv2.resize(image, (200, 200))
+show_image(cv2.cvtColor(resized, cv2.COLOR_BGR2RGB))
+
+cropped = image[50:200, 100:300]
+show_image(cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB))
