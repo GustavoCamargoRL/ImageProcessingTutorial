@@ -10,12 +10,20 @@ def show_image(img, cmap=None):
 
 # 2. Load an image from file
 image = cv2.imread('exemplo.png')  # Replace with a valid image path
-image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-#show_image(image_rgb)
+#image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+show_image(image)
+
+image2 = cv2.imread('exemplo.png')
+cv2.imshow('Image', image2)
+cv2.waitKey(0)
 
 # 3. Convert to grayscale
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 #show_image(gray, cmap='gray')
+
+# Convert grayscale to binary using thresholding
+_, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
+#show_image(binary, cmap='gray')
 
 # 4. Resize and crop the image
 resized = cv2.resize(image, (200, 200))
@@ -26,7 +34,7 @@ cropped = image[50:200, 100:300]
 
 # 5. Flip and rotate the image
 flipped = cv2.flip(image, 1)  # Horizontal flip
-show_image(cv2.cvtColor(flipped, cv2.COLOR_BGR2RGB))
+#show_image(cv2.cvtColor(flipped, cv2.COLOR_BGR2RGB))
 
 # Rotate 45 degrees around the center
 height, width = image.shape[:2]
@@ -36,4 +44,4 @@ rotated = cv2.warpAffine(image, rotation_matrix, (width, height))
 show_image(cv2.cvtColor(rotated, cv2.COLOR_BGR2RGB))
 
 # 6. Save the modified image
-cv2.imwrite('grayscale_image.png', gray)
+#cv2.imwrite('grayscale_image.png', gray)
