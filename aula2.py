@@ -10,3 +10,14 @@ def show_image(img, cmap=None, title=''):
         plt.title(title)
     plt.imshow(img, cmap=cmap)
     plt.show()
+
+# Load image in grayscale
+gray = cv2.imread('exemplo.png', cv2.IMREAD_GRAYSCALE)
+show_image(gray, cmap='gray', title='Original Grayscale Image')
+
+# Plot histogram
+plt.hist(gray.ravel(), 256, [0, 256])
+plt.title('Histogram')
+plt.xlabel('Pixel Intensity')
+plt.ylabel('Frequency')
+plt.show()
