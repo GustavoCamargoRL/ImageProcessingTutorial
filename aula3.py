@@ -40,3 +40,11 @@ show_image(gray, cmap='gray', title='Grayscale Image')
 # Apply Canny edge detector
 edges = cv2.Canny(gray, 100, 200)
 show_image(edges, cmap='gray', title='Canny Edges')
+
+# Find contours from Canny edges
+contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+# Draw contours on a copy of original image
+img_contours = img.copy()
+cv2.drawContours(img_contours, contours, -1, (0, 255, 0), 2)
+show_image(cv2.cvtColor(img_contours, cv2.COLOR_BGR2RGB), title='Contours')
