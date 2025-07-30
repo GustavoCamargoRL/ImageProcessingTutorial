@@ -12,7 +12,7 @@ def show_image(img, cmap=None, title=''):
     plt.show()
 
 # Load image in grayscale
-img = cv2.imread('lenna.png')  # Replace with a suitable image
+img = cv2.imread('exemplo.png')  # Replace with a suitable image
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 show_image(gray, cmap='gray', title='Grayscale Image')
 
@@ -21,8 +21,8 @@ show_image(gray, cmap='gray', title='Grayscale Image')
 #show_image(blurred, cmap='gray', title='Blurred Image')
 
 # Sobel X and Y
-#sobel_x = cv2.Sobel(gray, cv2.CV_16U, 1, 0, ksize=3)
-#sobel_y = cv2.Sobel(gray, cv2.CV_16U, 0, 1, ksize=3)
+sobel_x = cv2.Sobel(gray, cv2.CV_64F, 1, 0, ksize=3)
+sobel_y = cv2.Sobel(gray, cv2.CV_64F, 0, 1, ksize=3)
 
 # Convert back to uint8
 #sobel_x = cv2.convertScaleAbs(sobel_x)
