@@ -45,8 +45,35 @@ kern_cross = cv2.getStructuringElement(cv2.MORPH_CROSS, (3,3))
 #show_image(eroded, cmap='gray', title='Eroded (3x3 rect)')
 #show_image(dilated, cmap='gray', title='Dilated (3x3 rect)')
 
-opening = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kern_ellip)
-closing = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kern_ellip)
+#opening = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kern_ellip)
+#closing = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kern_ellip)
 
-show_image(opening, cmap='gray', title='Opening (5x5 ellipse)')
-show_image(closing, cmap='gray', title='Closing (5x5 ellipse)')
+#show_image(opening, cmap='gray', title='Opening (5x5 ellipse)')
+#show_image(closing, cmap='gray', title='Closing (5x5 ellipse)')
+
+# Apply morphological opening to clean noise
+kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5,5))
+clean = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel, iterations=2)
+show_image(clean, cmap='gray', title='Cleaned binary (opening)')
+
+# Find contours
+contours, _ = cv2.findContours(clean, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+print('Found contours:', len(contours))
+
+# Draw bounding boxes and centroids on a color image
+color = cv2.cvtColor(clean, cv2.COLOR_GRAY2BGR)
+count = 0
+for i, cnt in enumerate(contours, 1):
+    area = cv2.contourArea(cnt)
+    if area < 200:  # ignore tiny contours
+        continue
+    count += 1
+    x, y, w, h = cv2.boundingRect(cnt)
+    cx = x + w//2
+    cy = y + h//2
+    cv2.rectangle(color, (x,y), (x+w, y+h), (0,255,0), 2)
+    cv2.putText(color, f'{count}', (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,255,0), 2)
+    cv2.circle(color, (cx, cy), 3, (0,0,255), -1)
+
+show_image(color, title='Detected objects with bounding boxes and centroids')
+print('Counted objects (area>200):', count)
