@@ -11,11 +11,11 @@ def show_image(img, cmap=None, title=''):
     plt.imshow(img, cmap=cmap)
     plt.show()
 
-original = cv2.imread('lenna.png')
+#original = cv2.imread('exemplo.png')
 
 # Load image in grayscale
-gray = cv2.imread('exemplo.png', cv2.IMREAD_GRAYSCALE)
-show_image(gray, cmap='gray', title='Original Grayscale Image')
+#gray = cv2.imread('exemplo.png', cv2.IMREAD_GRAYSCALE)
+#show_image(gray, cmap='gray', title='Original Grayscale Image')
 
 # Plot histogram
 #plt.hist(gray.ravel(), 256, [0, 256])
@@ -23,6 +23,21 @@ show_image(gray, cmap='gray', title='Original Grayscale Image')
 #plt.xlabel('Pixel Intensity')
 #plt.ylabel('Frequency')
 #plt.show()
+
+# Oceano
+coral_live = cv2.imread('coral_v.png', cv2.IMREAD_GRAYSCALE)
+show_image(coral_live, cmap='gray', title='Original Grayscale Image')
+coral_dead = cv2.imread('coral_m.png', cv2.IMREAD_GRAYSCALE)
+show_image(coral_dead, cmap='gray', title='Original Grayscale Image')
+
+# Plot histogram
+plt.hist(coral_live.ravel(), 256, [0, 256], label='Live Coral', color='g', alpha=0.5)
+plt.hist(coral_dead.ravel(), 256, [0, 256], label='Dead Coral', color='r', alpha=0.5)
+plt.title('Histogram')
+plt.xlabel('Pixel Intensity')
+plt.ylabel('Frequency')
+plt.legend(labels=['Live Coral', 'Dead Coral'])
+plt.show()
 
 # Plot colour histogram
 #color = ('b','g','r')
