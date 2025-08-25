@@ -35,12 +35,18 @@ kern_rect = cv2.getStructuringElement(cv2.MORPH_RECT, (3,3))
 kern_ellip = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5,5))
 kern_cross = cv2.getStructuringElement(cv2.MORPH_CROSS, (3,3))
 
-print('Rect kernel:\n', kern_rect)
-print('\nEllipse kernel:\n', kern_ellip)
-print('\nCross kernel:\n', kern_cross)
+#print('Rect kernel:\n', kern_rect)
+#print('\nEllipse kernel:\n', kern_ellip)
+#print('\nCross kernel:\n', kern_cross)
 
-eroded = cv2.erode(binary, kern_rect, iterations=1)
-dilated = cv2.dilate(binary, kern_rect, iterations=1)
+#eroded = cv2.erode(binary, kern_rect, iterations=1)
+#dilated = cv2.dilate(binary, kern_rect, iterations=1)
 
-show_image(eroded, cmap='gray', title='Eroded (3x3 rect)')
-show_image(dilated, cmap='gray', title='Dilated (3x3 rect)')
+#show_image(eroded, cmap='gray', title='Eroded (3x3 rect)')
+#show_image(dilated, cmap='gray', title='Dilated (3x3 rect)')
+
+opening = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kern_ellip)
+closing = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kern_ellip)
+
+show_image(opening, cmap='gray', title='Opening (5x5 ellipse)')
+show_image(closing, cmap='gray', title='Closing (5x5 ellipse)')
