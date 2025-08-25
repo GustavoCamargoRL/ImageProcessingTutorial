@@ -27,3 +27,14 @@ noise = rng.choice([0, 255], size=(h, w), p=[0.96, 0.04]).astype(np.uint8)
 noisy = cv2.bitwise_or(image, noise)
 
 show_image(noisy, cmap='gray', title='Synthetic image with salt-and-pepper noise')
+
+_, binary = cv2.threshold(noisy, 127, 255, cv2.THRESH_BINARY)
+show_image(binary, cmap='gray', title='Binary image (threshold=127)')
+
+kern_rect = cv2.getStructuringElement(cv2.MORPH_RECT, (3,3))
+kern_ellip = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5,5))
+kern_cross = cv2.getStructuringElement(cv2.MORPH_CROSS, (3,3))
+
+print('Rect kernel:\n', kern_rect)
+print('\nEllipse kernel:\n', kern_ellip)
+print('\nCross kernel:\n', kern_cross)
