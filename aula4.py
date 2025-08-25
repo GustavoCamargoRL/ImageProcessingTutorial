@@ -38,3 +38,9 @@ kern_cross = cv2.getStructuringElement(cv2.MORPH_CROSS, (3,3))
 print('Rect kernel:\n', kern_rect)
 print('\nEllipse kernel:\n', kern_ellip)
 print('\nCross kernel:\n', kern_cross)
+
+eroded = cv2.erode(binary, kern_rect, iterations=1)
+dilated = cv2.dilate(binary, kern_rect, iterations=1)
+
+show_image(eroded, cmap='gray', title='Eroded (3x3 rect)')
+show_image(dilated, cmap='gray', title='Dilated (3x3 rect)')
