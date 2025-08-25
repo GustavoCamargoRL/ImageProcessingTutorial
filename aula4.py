@@ -21,3 +21,9 @@ cv2.circle(image, (180, 80), 30, 255, -1)
 cv2.circle(image, (290, 80), 30, 255, -1)
 cv2.circle(image, (120, 170), 25, 255, -1)
 cv2.circle(image, (250, 170), 25, 255, -1)
+
+rng = np.random.default_rng(42)
+noise = rng.choice([0, 255], size=(h, w), p=[0.96, 0.04]).astype(np.uint8)
+noisy = cv2.bitwise_or(image, noise)
+
+show_image(noisy, cmap='gray', title='Synthetic image with salt-and-pepper noise')
