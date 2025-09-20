@@ -149,5 +149,5 @@ cv2.arrowedLine(result, pt1, pt2, (0, 0, 255), 20, tipLength=0.5)
 
 plt.figure(figsize=(10, 6))
 plt.imshow(cv2.cvtColor(result, cv2.COLOR_BGR2RGB))
-plt.title("Corrected Oil Spill Flow Direction")
+plt.title("Oil Spill Flow Direction")
 plt.show()
