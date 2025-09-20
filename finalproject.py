@@ -1,9 +1,9 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-#
+
 ## Load the image
-#image = cv2.imread("coins.jpg")
+#image = cv2.imread("coins.jpeg")
 #gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 #
 ## Apply Gaussian Blur to reduce noise
@@ -44,8 +44,8 @@ import matplotlib.pyplot as plt
 #plt.imshow(cv2.cvtColor(result, cv2.COLOR_BGR2RGB))
 #
 #plt.show()
-#
-#
+
+
 def interactive_hsv_mask(image_path):
     image = cv2.imread(image_path)
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
@@ -88,7 +88,7 @@ def interactive_hsv_mask(image_path):
 # Load the image
 image = cv2.imread("oil.jpg")
 hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-interactive_hsv_mask("oil3.jpg")
+interactive_hsv_mask("oil4.jpg")
 
 # Define range for dark (oil spill) regions
 # Lower values: near black, Upper values: dark gray
